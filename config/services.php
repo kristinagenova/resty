@@ -41,4 +41,16 @@ return [
         'redirect' => 'http://127.0.0.1:8000/social/github/callback',
     ],
 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),         // Your Facebook Client ID
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'), // Your Facebook Client Secret
+        'redirect' => 'http://127.0.0.1:8000/social/facebook/callback',
+    ],
+
+    'twitter' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),         // Your Facebook Client ID
+        'client_secret' => env('TWITTER_CLIENT_SECRET'), // Your Facebook Client Secret
+        'redirect' => 'http://127.0.0.1:8000/social/twitter/callback',
+    ],
+
 ];
