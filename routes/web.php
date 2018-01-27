@@ -16,13 +16,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('/social/github', 'Auth\LoginController@redirectToGithub');
-Route::get('/social/github/callback', 'Auth\LoginController@handleGithubCallback');
+Route::get('/social/{network}', 'Auth\LoginController@redirectToSocialNetwork')->where('network', 'twitter|facebook|github');
+Route::get('/social/{network}/callback', 'Auth\LoginController@handleSocialNetworkCallbacks');
 
-Route::get('social/facebook', 'Auth\LoginController@redirectToFacebook');
-Route::get('social/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
-
-Route::get('social/twitter', 'Auth\LoginController@redirectToTwitter');
-Route::get('social/twitter/callback', 'Auth\LoginController@handleTwitterCallback');
 
 
