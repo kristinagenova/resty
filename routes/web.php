@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/social/{network}', 'Auth\LoginController@redirectToSocialNetwork')->where('network', 'twitter|facebook|github');
+Route::get('/social/{network}/callback', 'Auth\LoginController@handleSocialNetworkCallbacks');
+
+
+
