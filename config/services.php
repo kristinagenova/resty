@@ -53,4 +53,8 @@ return [
         'redirect' => 'http://127.0.0.1:8000/social/twitter/callback',
     ],
 
+    'zomato' => [
+        'api_key' => env('ZOMATO_API_KEY'),
+    ],
+
 ];
