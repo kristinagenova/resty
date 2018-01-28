@@ -10,6 +10,7 @@ class Restaurant extends Model
      * @var bool
      */
     public $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -17,10 +18,15 @@ class Restaurant extends Model
      */
 
     public $timestamps = false;
+
     /**
      * @var string
      */
     protected $primaryKey = 'restaurant_id';
+
+    /**
+     * @var array
+     */
     protected $fillable = [
         'restaurant_id',
         'name',
