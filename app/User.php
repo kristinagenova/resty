@@ -23,11 +23,17 @@ class User extends Authenticatable
         'name',
         'email',
         'social_network',
-        'avatar'
+        'avatar',
+        'meal_frequency',
     ];
 
     protected $hidden = [
         'social_network',
         'social_network_token',
     ];
+
+    public function mealSettings()
+    {
+        return $this->hasMany(MealSettings::class, 'user_id', 'user_id');
+    }
 }
