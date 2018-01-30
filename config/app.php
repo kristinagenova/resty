@@ -125,6 +125,8 @@ return [
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
+    'meal_frequency_default' => 3,
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
