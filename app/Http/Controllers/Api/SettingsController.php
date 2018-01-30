@@ -6,6 +6,7 @@ use App\Exceptions\GeneralErrorException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateMealSettings;
 use App\Http\Requests\UpdateUserSettings;
+use App\MealSettings;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -59,6 +60,8 @@ class SettingsController extends Controller
 
         /** @var User $user */
         $user = $request->user();
+
+        MealSettings::where('user_id', $user['user_id'])->delete();
 
         $data = $request->input();
         foreach ($data['settings'] as $row) {
