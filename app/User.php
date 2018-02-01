@@ -36,4 +36,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(MealSettings::class, 'user_id', 'user_id');
     }
+
+    public function visits()
+    {
+        return $this->hasMany(Visit::class, 'user_id', 'user_id');
+    }
 }

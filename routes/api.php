@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,15 +12,14 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-
     Route::get('/home', 'Api\HomeController@home');
+    Route::get('/user', 'Api\UserController@user');
     Route::get('/restaurant/{id}', 'Api\HomeController@restaurant');
     Route::get('/user_settings', 'Api\SettingsController@getUserSettings');
     Route::post('/user_settings', 'Api\SettingsController@updateUserSettings');
     Route::get('/meal_settings', 'Api\SettingsController@getMealSettings');
     Route::post('/meal_settings', 'Api\SettingsController@updateMealSettings');
+    Route::post('/visit', 'Api\VisitsController@recordVisit');
+    Route::get('/visit', 'Api\VisitsController@getVisits');
 });
 
