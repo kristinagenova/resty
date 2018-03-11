@@ -24,6 +24,7 @@ class UpdateMealSettings extends FormRequest
      */
     public function rules()
     {
+        \Log::info("message", $this);
         /*
          * Format of the incoming request. The number of elements in the
          * array would be repeated as many times as the frequency of meals
