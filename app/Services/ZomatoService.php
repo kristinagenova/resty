@@ -17,7 +17,7 @@ class ZomatoService
      * @return Collection
      * @throws \Exception
      */
-    public function search($latitude, $longitude, $limit = 20)
+    public function search($latitude, $longitude, $limit)
     {
         // validate the format of the coordinates
         $cacheKey = md5($latitude . '.' . $longitude . '.' . $limit);
