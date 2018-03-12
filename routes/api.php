@@ -14,6 +14,7 @@
 Route::middleware('auth:api')->group(function () {
     Route::get('/home', 'Api\HomeController@home');
     Route::get('/user', 'Api\UserController@user');
+    Route::post('/one_signal', 'Api\UserController@one_signal');
     Route::get('/restaurant/{id}', 'Api\HomeController@restaurant');
     Route::get('/user_settings', 'Api\SettingsController@getUserSettings');
     Route::post('/user_settings', 'Api\SettingsController@updateUserSettings');
