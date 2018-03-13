@@ -26,6 +26,10 @@ class UserController extends Controller
         return $user;
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function one_signal(Request $request)
     {
 
