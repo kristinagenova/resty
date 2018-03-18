@@ -25,5 +25,6 @@ class MealSettings extends Model
         'hour',
         'minute',
         'notification_time',
+        'actual_notification_time',
     ];
 }
