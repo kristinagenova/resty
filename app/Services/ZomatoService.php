@@ -33,7 +33,6 @@ class ZomatoService
                 'order' => 'desc']);
 
             $response = json_decode($response->getBody()->getContents(), true);
-            dd($response);
             cache([$cacheKey => $response], 120);
         }
 
