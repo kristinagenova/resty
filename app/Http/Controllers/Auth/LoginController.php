@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use Illuminate\Http\JsonResponse;
 use InvalidArgumentException;
-use Socialite;
+
 
 class LoginController extends Controller
 {

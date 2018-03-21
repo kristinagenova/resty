@@ -14,7 +14,7 @@ class AddActualNotificationTimeToMealSettingsTable extends Migration
     public function up()
     {
         Schema::table("meal_settings", function (Blueprint $table){
-            $table->timestamp('actual_notification_time')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->integer('actual_notification_time')->default(0);
         });
     }
 
