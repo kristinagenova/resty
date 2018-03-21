@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AddActualNotificationTimeToMealSettingsTable extends Migration
 {
@@ -14,7 +14,7 @@ class AddActualNotificationTimeToMealSettingsTable extends Migration
     public function up()
     {
         Schema::table("meal_settings", function (Blueprint $table){
-            $table->date('actual_notification_time')->default('');
+            $table->timestamp('actual_notification_time')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 
