@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 
+use App\Exceptions\GeneralErrorException;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
@@ -11,9 +12,10 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
-    /**
-     * @param Request $request
-     */
+	/**
+	 * @param Request $request
+	 * @return User
+	 */
     public function user(Request $request)
     {
         /** @var User $user */
@@ -26,16 +28,17 @@ class UserController extends Controller
         return $user;
     }
 
-    /**
-     * @param Request $request
-     * @return mixed
-     */
+	/**
+	 * @param Request $request
+	 * @return mixed
+	 * @throws GeneralErrorException
+	 */
     public function one_signal(Request $request)
     {
 
         $success = $request->user()
             ->update([
-                'player_id' => $request->input('player_id')
+                'player_id' => trim($request->input('player_id'))
             ]);
 
         if ($success) {

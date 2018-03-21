@@ -9,6 +9,13 @@ use Illuminate\Http\JsonResponse;
 class LocationService
 {
 
+	/**
+	 * @param $userLatitude
+	 * @param $userLongitude
+	 * @param $restLatitude
+	 * @param $restLongitude
+	 * @return JsonResponse
+	 */
     public function findDistance($userLatitude, $userLongitude, $restLatitude, $restLongitude)
     {
 

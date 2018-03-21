@@ -66,6 +66,10 @@ class VisitsController extends Controller
 
     }
 
+	/**
+	 * @param Request $request
+	 * @return mixed
+	 */
     public function getVisits(Request $request)
     {
         return Visit::where('user_id', $request->user()->user_id)

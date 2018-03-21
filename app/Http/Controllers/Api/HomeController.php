@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
 
+	/**
+	 * @param Request $request
+	 * @param ZomatoService $service
+	 * @return \Illuminate\Database\Eloquent\Collection
+	 */
     public function home(Request $request, ZomatoService $service)
     {
 
@@ -28,6 +33,11 @@ class HomeController extends Controller
 
     }
 
+	/**
+	 * @param $restaurant_id
+	 * @param ZomatoService $service
+	 * @return Restaurant
+	 */
     public function restaurant($restaurant_id, ZomatoService $service)
     {
         $restaurant = Restaurant::find($restaurant_id);

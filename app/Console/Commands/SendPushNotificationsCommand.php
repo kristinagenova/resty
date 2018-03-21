@@ -28,12 +28,11 @@ class SendPushNotificationsCommand extends Command
      */
     protected $notificationService;
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     *
-     */
+	/**
+	 * SendPushNotificationsCommand constructor.
+	 *
+	 * @param SendNotificationService $notificationService
+	 */
     public function __construct(SendNotificationService $notificationService)
     {
         parent::__construct();
@@ -47,6 +46,7 @@ class SendPushNotificationsCommand extends Command
      */
     public function handle()
     {
+	    $this->info(date('Y-m-d H:i:s'));
         $this->notificationService->SendNotification();
     }
 }
