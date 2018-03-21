@@ -4,53 +4,49 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use GuzzleHttp\Client;
 use InvalidArgumentException;
 use Socialite;
 
 class LoginController extends Controller
 {
 
-    /**
-     * Redirect the user to the GitHub authentication page.
-     *
-     * @param string $network
-     * @return \Illuminate\Http\Response
-     */
-    public function redirectToSocialNetwork($network)
-    {
-        return Socialite::driver($network)->redirect();
-    }
-
-
-    /**
-     * Obtain the user information from a given Social network.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function handleSocialNetworkCallbacks($network)
-    {
-        $user = Socialite::driver($network)->user();
-
-        if ($user) {
-            $user = $this->saveUser($user, $network);
+    public function getSocialToken($user_id, $token){
+        try {
+            $client = new Client(['base_uri' => 'https://graph.facebook.com/']);
+            $response = $client->request('GET', 'me', [
+                'query' => [
+                    'access_token' => $token,
+                    'fields' => 'id,name,email,picture',
+                ],
+            ]);
+        } catch (ClientException $exception) {
+            return new JsonResponse($exception->getResponse());
         }
 
-        return $user;
+        $response = json_decode($response->getBody()->getContents(), true);
+        if ($response['id'] == $user_id){
+            return $this->saveUser($response, "facebook", $token);
+        }
     }
+
+
 
     /**
      * @param $data
      * @param $network
+     * @param $token
      * @return User
      */
-    protected function saveUser($data, $network)
+    protected function saveUser($data, $network, $token)
     {
 
         if (!$network) {
             throw new InvalidArgumentException('Network is required parameter');
         }
 
-        $user = User::where(['social_network_token' => $data->token, 'social_network' => $network])->first();
+
+        $user = User::where(['social_network_token' => $token, 'social_network' => $network])->first();
 
         if (!$user) {
             switch ($network) {
@@ -63,13 +59,13 @@ class LoginController extends Controller
             }
 
             $user = new User([
-                'name' => $data->getName(),
-                'email' => $data->getEmail(),
+                'name' => $data['name'],
+                'email' => $data['email'],
                 'social_network' => $network,
-                'avatar' => $data->getAvatar()
+                'avatar' => $data['picture']['data']['url'],
             ]);
-            $user->social_network_token = $data->token;
-            $user->api_token = encrypt($data->token);
+            $user->social_network_token = $token;
+            $user->api_token = encrypt($token);
             $user->save();
         }
 
