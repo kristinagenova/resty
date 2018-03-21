@@ -25,6 +25,7 @@ class User extends Authenticatable
         'social_network',
         'avatar',
         'meal_frequency',
+        'player_id',
     ];
 
     protected $hidden = [

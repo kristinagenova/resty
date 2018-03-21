@@ -64,11 +64,17 @@ class SettingsController extends Controller
         MealSettings::where('user_id', $user['user_id'])->delete();
 
         $data = $request->input();
+
+
+
         foreach ($data['settings'] as $row) {
+            $time = $row['hour'] . ':' . $row['minute'];
+            $actual_notification_time = strtotime($time) - ($row['notification_time']*60);
+            $row['actual_notification_time'] = date('H:i', $actual_notification_time);
+
             $user->mealSettings()->create($row);
         }
         return $user->mealSettings;
     }
-
 
 }
