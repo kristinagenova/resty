@@ -27,7 +27,7 @@ class HomeController extends Controller
         } else {
             $limit = $request->get('count');
             $longitude = 55.873543;//$request->get('lon');
-            $latitude = ‎ - 4.289058;    //$request->get('lat');
+            $latitude = ‎ - 4.289058;     //$request->get('lat');
         }
         return $service->search($latitude, $longitude, $limit);
 
